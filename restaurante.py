@@ -6,11 +6,25 @@ class Mesa:
         self.numero = numero
         self.status = status
         self.contas = contas
+
+    def verify_contas(self,conta):
+    	return (conta in self.contas)
+
+    def insert_contas(self,conta):
+    	if not conta in self.contas:
+    		self.contas.append(conta)
         
 class Categoria:
 	def __init__(self,descricao,produtos=[]):
 		self.descricao = descricao
 		self.produtos = produtos
+
+	def insert_produtos(self,produto):
+		if not produto in self.produtos:
+			self.produtos.append(produto)
+
+	def verify_produtos(self,produto):
+		return (produto in self.produtos)
 		
 class Garcom:
 	def __init__(self,nome,endereco,telefone,cpf,identidade,matricula,contas=[]):
@@ -47,15 +61,47 @@ class Conta:
 		self.itens = itens
 		self.valor_final = valor_final
 		self.comissao = comissao
+
+	def insert_itens(self,item):
+		if not item in self.itens:
+			self.itens.append(item)
+
+	def verify_itens(self,item):
+		return (item in self.itens)
+
+	def close_count(self,data_fechamento,hora_fechamento):
+		self.data_fechamento = data_fechamento
+		self.hora_fechamento = hora_fechamento
+		self.status = 'encerrada'
+		return 'Conta encerrada! Imprima e-NF!'
+
+	def calculate_total_value_count(self):
+		if 0 < len(self.itens):
+			for item in self.itens:
+				self.valor_final += item.calculate_value_itemconta()
+			return self.valor_final
+		return False
+
+	def print_nota_fiscal(self):
+		if 0 < len(self.itens):
+			nota_fiscal = ''
+			nota_fiscal += ('Data Abertura: %s - Hora Abertura: %s\n'%(self.data_abertura,self.hora_abertura))
+			nota_fiscal += 'Qtd Produto - Valor\n'
+			for item in self.itens:
+				nota_fiscal += ('%02.d %s X %.2f\n'%(item.quantidade,item.produto.nome,item.produto.preco))
+			nota_fiscal += ('Valor final: %.2f\n'%(self.valor_final))
+			nota_fiscal += ('Data Fechamento: %s - Hora Fechamento: %s'%(self.data_fechamento,self.hora_fechamento))
+			return nota_fiscal
+		return False
 		
 class Produto:
 	def __init__(self,nome,descricao,codigo,preco,itens=[],categorias=[]):
 	    self.nome = nome
-		self.descricao = descricao
-		self.codigo = codigo
-		self.preco = preco
-		self.itens = itens
-		self.categorias = categorias
+	    self.descricao = descricao
+	    self.codigo = codigo
+	    self.preco = preco
+	    self.itens = itens
+	    self.categorias = categorias
 		
 	def insert_itens(self,item):
 		if not item in self.itens:
