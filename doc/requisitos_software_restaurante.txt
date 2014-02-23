@@ -1,0 +1,15 @@
+=> Quando uma conta é aberta pelo Caixa, deve ser registrada a mesa, o garçom que está atendendo, a data e o horário de abertura da conta;
+
+=> Durante a noite, produtos do cardápio são solicitados pelos clientes e associados à sua conta pelo próprio Garçom através de um PalmTop, cada produto em uma determinada quantidade, gerando um item da conta;
+
+=> A cada item associado à Conta enquanto ela está aberta, seu total vai sendo calculado;
+
+=> Produtos do cardápio são organizados por categorias de produtos, como Bebidas, Petiscos, Carnes, Aves, Massas e Sobremesas;
+
+=> Produtos possuem um preço e um código;
+
+=> Quando do fechamento de uma conta pelo Garçom, a pedido do Cliente, o sistema deve registrar a data e o horário do fechamento e calcular o seu valor total, imprimindo a correspondente nota fiscal;
+
+=> Ao final de cada semana, as comissões dos garçons devem ser calculadas com base no somatório das contas que cada um atendeu na semana;
+
+=> O percentual aplicado para cálculo das comissões pode variar de tempos em tempos, devendo ser mantido pelo sistema;
